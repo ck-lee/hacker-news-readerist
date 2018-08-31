@@ -6,6 +6,8 @@
   },
   "rules": {
     "linebreak-style":"off",
-    "react/jsx-filename-extension":"off"
+    "react/jsx-filename-extension":"off",
+    "react/forbid-prop-types": "warn",
+    "import/no-extraneous-dependencies": "warn"
   }
 }
