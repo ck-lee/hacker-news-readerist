@@ -1,9 +1,16 @@
 import React from 'react';
 /* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
-import { WindowScroller, List } from 'react-virtualized';
+import { InfiniteLoader, List, WindowScroller } from 'react-virtualized';
 
-const HackerNewsList = ({ newsIds }) => {
+const HackerNewsList = ({ getMoreNewsItem, newsIds }) => {
+  const isRowLoaded = ({ index }) => {
+  };
+
+  const loadMoreRows = ({ startIndex, stopIndex }) => {
+    getMoreNewsItem(startIndex, stopIndex);
+  };
+
   const rowRenderer = ({
     index,
     style,
@@ -27,17 +34,27 @@ const HackerNewsList = ({ newsIds }) => {
         {({
           height, isScrolling, onChildScroll, scrollTop,
         }) => (
-          <List
-            autoHeight
-            height={height}
-            isScrolling={isScrolling}
-            onScroll={onChildScroll}
+          <InfiniteLoader
+            isRowLoaded={isRowLoaded}
+            loadMoreRows={loadMoreRows}
             rowCount={newsIds.length}
-            rowHeight={20}
-            rowRenderer={rowRenderer}
-            scrollTop={scrollTop}
-            width={300}
-          />
+          >
+            {({ onRowsRendered, registerChild }) => (
+              <List
+                autoHeight
+                height={height}
+                isScrolling={isScrolling}
+                onRowsRendered={onRowsRendered}
+                onScroll={onChildScroll}
+                ref={registerChild}
+                rowCount={newsIds.length}
+                rowHeight={20}
+                rowRenderer={rowRenderer}
+                scrollTop={scrollTop}
+                width={300}
+              />
+            )}
+          </InfiniteLoader>
         )}
       </WindowScroller>
     </div>
@@ -46,6 +63,7 @@ const HackerNewsList = ({ newsIds }) => {
 
 HackerNewsList.propTypes = {
   newsIds: PropTypes.array.isRequired,
+  getMoreNewsItem: PropTypes.func.isRequired,
 };
 
 export default HackerNewsList;
