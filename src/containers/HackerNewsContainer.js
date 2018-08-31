@@ -5,11 +5,7 @@ import { connect } from 'react-redux';
 import HackerNewsList from '../components/HackerNewsList/HackerNewsList';
 
 const HackerNewsContainer = ({ newsIds }) => (
-  <HackerNewsList>
-    {
-      newsIds.map(newsId => <li key={newsId}>{newsId}</li>)
-    }
-  </HackerNewsList>
+  <HackerNewsList newsIds={newsIds} />
 );
 
 HackerNewsContainer.propTypes = {
