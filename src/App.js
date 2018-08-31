@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+import { getLatestNews } from './actions';
+import HackerNewsContainer from './containers/HackerNewsContainer';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const middleware = [thunk];
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(...middleware),
+);
+
+store.dispatch(getLatestNews());
+
+const App = () => (
+  <div className="App">
+    <Provider store={store}>
+      <HackerNewsContainer />
+    </Provider>
+  </div>
+);
 
 export default App;
