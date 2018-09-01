@@ -36,6 +36,12 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  if (event.request.url === 'https://hacker-news.firebaseio.com/v0/newstories.json') {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match(event.request)),
+    );
+    return;
+  }
   event.respondWith(
     caches.open(cacheName)
       .then(cache => cache.match(event.request, { ignoreSearch: true }))
