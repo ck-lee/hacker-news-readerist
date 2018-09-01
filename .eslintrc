@@ -2,12 +2,17 @@
   "parser": "babel-eslint",
   "extends": "airbnb",
   "globals": {
-    "fetch": true
+    "fetch": true,
+    "windows": true,
+    "caches": true,
+    "it": true,
+    "document": true
   },
   "rules": {
     "linebreak-style":"off",
     "react/jsx-filename-extension":"off",
     "react/forbid-prop-types": "warn",
+    "react/require-default-props": "warn",
     "import/no-extraneous-dependencies": "warn"
   }
 }

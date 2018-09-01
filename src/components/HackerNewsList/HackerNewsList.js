@@ -9,7 +9,6 @@ const STATUS_LOADING = 1;
 const loadedRowsMap = {};
 
 const HackerNewsList = ({ getMoreNewsItem, newsIds, newsItems }) => {
-
   const isRowLoaded = ({ index }) => loadedRowsMap[index];
 
   const loadMoreRows = ({ startIndex, stopIndex }) => {
@@ -31,7 +30,6 @@ const HackerNewsList = ({ getMoreNewsItem, newsIds, newsItems }) => {
       style={style}
     />
   );
-
   rowRenderer.propTypes = {
     index: PropTypes.number.isRequired,
     style: PropTypes.object.isRequired,

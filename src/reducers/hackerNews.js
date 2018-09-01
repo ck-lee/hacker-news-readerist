@@ -25,20 +25,30 @@ const HackerNewsListReducer = (state = initialState, action) => {
         ...state,
         newsIds: action.newsIds,
       };
+
+
     case RECEIVE_ITEM:
       /* eslint-disable no-case-declarations */
       const newItem = {
         [action.item.id]: action.item,
       };
+
+      // Handle ask or show items that do not have a URL property
       if (!newItem[action.item.id].url) {
         newItem[action.item.id].url = `https://news.ycombinator.com/item?id=${action.item.id}`;
       }
+
+      // Format date/time
       newItem[action.item.id].timeString = timeConverter(newItem[action.item.id].time);
+
       return {
         ...state,
         newsItems: { ...state.newsItems, ...newItem },
       };
+
+
     case REQUEST_ITEM:
+      // Set empty object to indicate that the item is loading to prevent duplicate requests
       /* eslint-disable no-case-declarations */
       const emptyItem = {
         [action.itemId]: action.item,
@@ -47,6 +57,8 @@ const HackerNewsListReducer = (state = initialState, action) => {
         ...state,
         newsItems: { ...state.newsItems, ...emptyItem },
       };
+
+
     default:
       return state;
   }

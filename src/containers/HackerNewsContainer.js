@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getMoreNewsItem } from '../actions';
 import HackerNewsList from '../components/HackerNewsList/HackerNewsList';
-
+/* eslint-disable no-shadow */
 const HackerNewsContainer = ({ getMoreNewsItem, newsIds, newsItems }) => (
   <HackerNewsList
     getMoreNewsItem={getMoreNewsItem}
