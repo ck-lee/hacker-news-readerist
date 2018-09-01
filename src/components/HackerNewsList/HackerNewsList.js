@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { InfiniteLoader, List, WindowScroller } from 'react-virtualized';
 
 const STATUS_LOADING = 1;
+const loadedRowsMap = {};
 
 const HackerNewsList = ({ getMoreNewsItem, newsIds, newsItems }) => {
-  const loadedRowsMap = {};
 
   const isRowLoaded = ({ index }) => loadedRowsMap[index];
 
@@ -56,6 +56,7 @@ const HackerNewsList = ({ getMoreNewsItem, newsIds, newsItems }) => {
             isRowLoaded={isRowLoaded}
             loadMoreRows={loadMoreRows}
             rowCount={newsIds.length}
+            minimumBatchSize={1}
           >
             {({ onRowsRendered, registerChild }) => (
               <List

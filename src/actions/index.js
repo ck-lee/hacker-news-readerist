@@ -2,6 +2,7 @@ import hackerNews from '../api/hackerNews';
 import {
   RECEIVE_IDS,
   RECEIVE_ITEM,
+  REQUEST_ITEM,
 } from '../constants/ActionTypes';
 
 export const receiveLatestNews = newsIds => (dispatch) => {
@@ -33,6 +34,10 @@ export const getMoreNewsItem = (startIndex, stopIndex) => (dispatch, getState) =
   for (let i = startIndex; i <= stopIndex; i++) {
     const itemId = getState().hackerNews.newsIds[i];
     if (!getState().hackerNews.newsItems[itemId]) {
+      dispatch({
+        type: REQUEST_ITEM,
+        itemId,
+      });
       hackerNews.getItem(itemId)
         .then(response => response.json())
         .then(

@@ -1,4 +1,4 @@
-import { RECEIVE_IDS, RECEIVE_ITEM } from '../constants/ActionTypes';
+import { RECEIVE_IDS, RECEIVE_ITEM, REQUEST_ITEM } from '../constants/ActionTypes';
 
 const initialState = {
   newsIds: [],
@@ -20,6 +20,15 @@ const HackerNewsListReducer = (state = initialState, action) => {
       return {
         ...state,
         newsItems: { ...state.newsItems, ...newItem },
+      };
+    case REQUEST_ITEM:
+      /* eslint-disable no-case-declarations */
+      const emptyItem = {
+        [action.itemId]: action.item,
+      };
+      return {
+        ...state,
+        newsItems: { ...state.newsItems, ...emptyItem },
       };
     default:
       return state;
