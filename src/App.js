@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import { getLatestNews } from './actions';
 import HackerNewsContainer from './containers/HackerNewsContainer';
+import './App.css';
 
 const middleware = [thunk];
 

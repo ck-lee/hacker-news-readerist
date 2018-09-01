@@ -2,6 +2,7 @@ import React from 'react';
 /* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import { InfiniteLoader, List, WindowScroller } from 'react-virtualized';
+import './HackerNewsList.css';
 
 const STATUS_LOADING = 1;
 const loadedRowsMap = {};
@@ -47,7 +48,8 @@ const HackerNewsList = ({ getMoreNewsItem, newsIds, newsItems }) => {
   };
 
   return (
-    <div>
+    <div className="container">
+      <h2>Hacker News Story List</h2>
       <WindowScroller>
         {({
           height, isScrolling, onChildScroll, scrollTop,
@@ -70,7 +72,7 @@ const HackerNewsList = ({ getMoreNewsItem, newsIds, newsItems }) => {
                 rowHeight={20}
                 rowRenderer={rowRenderer}
                 scrollTop={scrollTop}
-                width={1000}
+                width={700}
               />
             )}
           </InfiniteLoader>
