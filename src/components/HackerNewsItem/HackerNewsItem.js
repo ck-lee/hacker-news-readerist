@@ -14,7 +14,7 @@ const HackerNewsItem = ({
         className="news-item"
         style={style}
       >
-        <a href={newsItem.url} target="_blank" rel="noopener noreferrer">{newsItem.title}</a>
+        <a className="title" href={newsItem.url} target="_blank" rel="noopener noreferrer">{newsItem.title}</a>
         <span className="user">{newsItem.by}</span>
         <span className="post-time">{newsItem.timeString}</span>
       </div>
@@ -22,10 +22,14 @@ const HackerNewsItem = ({
   }
   return (
     <div
-      className="news-item--empty"
+      className="news-item news-item--empty"
       key={index}
       style={style}
-    />
+    >
+      <span className="title">&nbsp;</span>
+      <span className="user">&nbsp;</span>
+      <span className="post-time">&nbsp;</span>
+    </div>
   );
 };
 

@@ -5,15 +5,14 @@
   align-items: center;
   font-size: 0.9em;
 }
-.news-item a {
+.news-item .title {
   text-decoration: none;
   color: #202020;
-  flex-grow: 5;
-  align-items: stretch;
+  flex-grow: 4;
   flex-basis: 400px;
 }
 
-.news-item a:hover{
+.news-item .title:hover{
   color: #db4c3f;
 } 
 
@@ -29,4 +28,14 @@
   flex-grow: 1;
   align-items: flex-end;
   text-align: right;
+}
+
+.news-item--empty .title {
+  background-color: #e2e2e2;
+}
+
+.news-item--empty .post-time, .news-item--empty .user {
+  background-color: #e2e2e2;
+  margin-left: 20px;
+  min-width: 100px;
 }
