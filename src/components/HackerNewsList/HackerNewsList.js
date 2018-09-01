@@ -2,6 +2,7 @@ import React from 'react';
 /* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import { InfiniteLoader, List, WindowScroller } from 'react-virtualized';
+import HackerNewsItem from '../HackerNewsItem/HackerNewsItem';
 import './HackerNewsList.css';
 
 const STATUS_LOADING = 1;
@@ -22,25 +23,14 @@ const HackerNewsList = ({ getMoreNewsItem, newsIds, newsItems }) => {
   const rowRenderer = ({
     index,
     style,
-  }) => {
-    const newsItem = newsItems[newsIds[index]];
-    if (newsItem) {
-      return (
-        <div
-          key={newsItem.id}
-          style={style}
-        >
-          {newsItem.title}
-        </div>
-      );
-    }
-    return (
-      <div
-        key={index}
-        style={style}
-      />
-    );
-  };
+  }) => (
+    <HackerNewsItem
+      key={newsIds[index]}
+      index={index}
+      newsItem={newsItems[newsIds[index]]}
+      style={style}
+    />
+  );
 
   rowRenderer.propTypes = {
     index: PropTypes.number.isRequired,
@@ -69,10 +59,11 @@ const HackerNewsList = ({ getMoreNewsItem, newsIds, newsItems }) => {
                 onScroll={onChildScroll}
                 ref={registerChild}
                 rowCount={newsIds.length}
-                rowHeight={20}
+                rowHeight={50}
                 rowRenderer={rowRenderer}
                 scrollTop={scrollTop}
-                width={700}
+                width={765}
+                className="list"
               />
             )}
           </InfiniteLoader>

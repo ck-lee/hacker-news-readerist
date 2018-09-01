@@ -1,0 +1,32 @@
+.news-item {
+  vertical-align: middle;
+  border-top: solid 1px #e0e0e0;
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+}
+.news-item a {
+  text-decoration: none;
+  color: #202020;
+  flex-grow: 5;
+  align-items: stretch;
+  flex-basis: 400px;
+}
+
+.news-item a:hover{
+  color: #db4c3f;
+} 
+
+.news-item .user {
+  font-size: 0.9em;
+  flex-grow: 1;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.news-item .post-time {
+  font-size: 0.9em;
+  flex-grow: 1;
+  align-items: flex-end;
+  text-align: right;
+}
