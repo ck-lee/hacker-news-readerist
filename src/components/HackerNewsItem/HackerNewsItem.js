@@ -11,6 +11,7 @@ const HackerNewsItem = ({
   if (newsItem) {
     return (
       <div
+        key={index}
         className="news-item"
         style={style}
       >

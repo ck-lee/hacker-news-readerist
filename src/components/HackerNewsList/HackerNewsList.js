@@ -9,14 +9,6 @@ const STATUS_LOADING = 1;
 const loadedRowsMap = {};
 
 class HackerNewsList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.rowRenderer.propTypes = {
-      index: PropTypes.number.isRequired,
-      style: PropTypes.object.isRequired,
-    };
-  }
-
   isRowLoaded = ({ index }) => loadedRowsMap[index];
 
   loadMoreRows = ({ startIndex, stopIndex }) => {
@@ -30,15 +22,16 @@ class HackerNewsList extends React.Component {
     getMoreNewsItem(startIndex, stopIndex);
   };
 
-  rowRenderer = ({
-    index,
-    style,
-  }) => {
+  render() {
     const {
       newsIds,
       newsItems,
     } = this.props;
-    return (
+
+    const rowRenderer = ({
+      index,
+      style,
+    }) => (
       <HackerNewsItem
         key={newsIds[index]}
         index={index}
@@ -46,12 +39,7 @@ class HackerNewsList extends React.Component {
         style={style}
       />
     );
-  };
 
-  render() {
-    const {
-      newsIds,
-    } = this.props;
     return (
       <div className="container">
         <h2>Hacker News Story List</h2>
@@ -75,7 +63,7 @@ class HackerNewsList extends React.Component {
                   ref={registerChild}
                   rowCount={newsIds.length}
                   rowHeight={50}
-                  rowRenderer={this.rowRenderer}
+                  rowRenderer={rowRenderer}
                   scrollTop={scrollTop}
                   width={765}
                   className="list"
