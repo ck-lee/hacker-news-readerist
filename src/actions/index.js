@@ -3,6 +3,7 @@ import {
   RECEIVE_IDS,
   RECEIVE_ITEM,
   REQUEST_ITEM,
+  FETCH_ERROR,
 } from '../constants/ActionTypes';
 
 export const receiveLatestNews = newsIds => (dispatch) => {
@@ -26,7 +27,12 @@ export const getLatestNews = () => (dispatch) => {
       (newsIds) => {
         dispatch(receiveLatestNews(newsIds));
       },
-    );
+    ).catch((error) => {
+      dispatch({
+        type: FETCH_ERROR,
+        error,
+      });
+    });
 };
 
 export const getMoreNewsItem = (startIndex, stopIndex) => (dispatch, getState) => {
@@ -45,7 +51,12 @@ export const getMoreNewsItem = (startIndex, stopIndex) => (dispatch, getState) =
           (item) => {
             dispatch(receiveItem(item));
           },
-        );
+        ).catch((error) => {
+          dispatch({
+            type: FETCH_ERROR,
+            error,
+          });
+        });
     }
   }
 };

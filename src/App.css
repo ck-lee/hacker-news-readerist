@@ -2,3 +2,9 @@
   background-color: #fafafa;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.error{
+  background: red;
+  padding: 4px;
+  position: fixed;
+}
