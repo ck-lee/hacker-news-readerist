@@ -22,10 +22,11 @@ const cacheName = `hacker-news-readerist-${version}`;
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(cacheName).then(cache => cache.addAll([
-      '/',
-      '/static/js/bundle.js',
-      '/manifest.json',
-      '/sw.js',
+      '/hacker-news-readerist/',
+      '/hacker-news-readerist/static/css/main.758d2704.css',
+      '/hacker-news-readerist/static/js/main.e4f5819e.js',
+      '/hacker-news-readerist/manifest.json',
+      '/hacker-news-readerist/sw.js',
     ])
       .then(() => self.skipWaiting())),
   );
